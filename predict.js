@@ -46,7 +46,7 @@ $(function () {
             var hotDog = [predictions.find(o => o.Tag === 'hot dog')];
             var hotDogProb = hotDog[0].Probability;
 
-            if (hotDogProb > .5) {
+            if (hotDogProb > .7) {
                 $('#analysisResults').html('<div class="matchLabel">Hot Dog (' + (hotDogProb * 100).toFixed(0) + '%)' + '</div>');
             }
             else {

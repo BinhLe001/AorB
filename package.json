@@ -1,0 +1,12 @@
+{
+  "name": "artworks",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron-prebuilt": "^1.4.13",
+    "pinkie-promise": "git+https://github.com/floatdrop/pinkie-promise.git",
+    "underscore": "~1.8.3"
+  }
+}

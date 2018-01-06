@@ -1,5 +1,5 @@
 {
-  "name": "artworks",
+  "name": "nothotdog",
   "version": "1.0.0",
   "scripts": {
     "start": "electron ."

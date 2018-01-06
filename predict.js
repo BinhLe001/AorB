@@ -1,6 +1,6 @@
 $(function () {
 
-    var url = "https://southcentralus.api.cognitive.microsoft.com/customvision/v1.1/Prediction/9136d2aa-3db1-4600-8431-c39ad2bdc21e/image";
+    var url = "https://southcentralus.api.cognitive.microsoft.com/customvision/v1.1/Prediction/cd6aa08e-e588-478a-a791-fc134595172f/image";
     var predictionKey = "a34ae72d4324428a85a4d2dc67a8e3bf";
     
     var fs = require("fs");
@@ -43,15 +43,14 @@ $(function () {
         }).done(function (data) {
 
             var predictions = data.Predictions;
-            var artists = [predictions.find(o => o.Tag === 'Picasso'), predictions.find(o => o.Tag === 'Rembrandt'), predictions.find(o => o.Tag === 'Pollock')];
-            var sortedArtists = _.sortBy(artists, 'Probability').reverse();
-            var possibleArtist = sortedArtists[0];
+            var hotDog = [predictions.find(o => o.Tag === 'hot dog')];
+            var hotDogProb = hotDog[0].Probability;
 
-            if (possibleArtist.Probability > .5) {
-                $('#analysisResults').html('<div class="matchLabel">' + possibleArtist.Tag + ' (' + (possibleArtist.Probability * 100).toFixed(0) + '%)' + '</div>');
+            if (hotDogProb > .5) {
+                $('#analysisResults').html('<div class="matchLabel">Hot Dog (' + (hotDogProb * 100).toFixed(0) + '%)' + '</div>');
             }
             else {
-                $('#analysisResults').html('<div class="noMatchLabel">Unknown artist</div>');
+                $('#analysisResults').html('<div class="noMatchLabel">Not Hot Dog</div>');
             }
 
         }).fail(function (xhr, status, err) {

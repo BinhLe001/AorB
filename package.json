@@ -1,5 +1,5 @@
 {
-  "name": "nothotdog",
+  "name": "aorb",
   "version": "1.0.0",
   "scripts": {
     "start": "electron ."

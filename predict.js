@@ -1,6 +1,6 @@
 $(function () {
 
-    var url = "https://southcentralus.api.cognitive.microsoft.com/customvision/v1.1/Prediction/cd6aa08e-e588-478a-a791-fc134595172f/image";
+    var url = "https://southcentralus.api.cognitive.microsoft.com/customvision/v1.1/Prediction/a21ef3d6-a34e-49e8-9758-0bd6f0c60a15/image";
     var predictionKey = "a34ae72d4324428a85a4d2dc67a8e3bf";
     
     var fs = require("fs");
@@ -43,14 +43,15 @@ $(function () {
         }).done(function (data) {
 
             var predictions = data.Predictions;
-            var hotDog = [predictions.find(o => o.Tag === 'hot dog')];
-            var hotDogProb = hotDog[0].Probability;
+            var faces = [predictions.find(o => o.Tag === 'An'), predictions.find(o => o.Tag === 'Binh')];
+            var sortedFaces = _.sortBy(faces, 'Probability').reverse();
+            var possibleFace = sortedFaces[0];
 
-            if (hotDogProb > .7) {
-                $('#analysisResults').html('<div class="matchLabel">Hot Dog (' + (hotDogProb * 100).toFixed(0) + '%)' + '</div>');
+            if (possibleFace.Probability > .1) {
+                $('#analysisResults').html('<div class="matchLabel">' + possibleFace.Tag + ' (' + (possibleFace.Probability * 100).toFixed(0) + '%)' + '</div>');
             }
             else {
-                $('#analysisResults').html('<div class="noMatchLabel">Not Hot Dog</div>');
+                $('#analysisResults').html('<div class="noMatchLabel">Unknown Person</div>');
             }
 
         }).fail(function (xhr, status, err) {
